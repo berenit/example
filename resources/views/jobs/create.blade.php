@@ -18,11 +18,7 @@
                                 <input type="text" name="title" id="title" class="block flex-1 border-0 bg-transparent py-1.5 px-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Capo turno">
                             </div>
                             <p class="text-xs test-red-500 font-semibold mt-2 ml-2 text-red-500">
-                                @error('title')
-                                {{ $message }}
-                                @else
-                                &nbsp;
-                                @enderror
+                                @error('title') {{ $message }} @else &nbsp; @enderror
                             </p>
                         </div>
                     </div>
@@ -34,11 +30,7 @@
                                 <input type="text" name="salary" id="salary" class="block flex-1 border-0 bg-transparent py-1.5 px-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="€ 30.000,00 per year.">
                             </div>
                             <p class="text-xs test-red-500 font-semibold mt-2 ml-2 text-red-500">
-                                @error('salary')
-                                {{ $message }}
-                                @else
-                                &nbsp;
-                                @enderror
+                                @error('salary') {{ $message }} @else &nbsp; @enderror
                             </p>
                         </div>
                     </div>
