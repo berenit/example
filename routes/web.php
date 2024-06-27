@@ -1,43 +1,25 @@
 <?php
 
+use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
-use \Illuminate\Support\Arr;
-use \App\Models\Job;
 
-Route::get('/', function () {
-    return view('home');
-});
+//Route::get('/', function () {
+//    return view('home');
+//});
 
-Route::get('/jobs', function () {
-    // $jobs = Job::all();
-    $jobs = Job::with('employer')->latest()->Paginate(5);
+Route::view('/', 'home');
 
-    return view('jobs.index', [
-        'jobs' => $jobs
-    ]);
-});
+Route::get('/jobs', [JobController::class, 'index']);
+Route::get('/jobs/create', [JobController::class, 'create']);
+Route::get('/jobs/{job}', [JobController::class, 'show']);
+Route::post('/jobs', [JobController::class, 'store']);
+Route::get('/jobs/{job}/edit', [JobController::class, 'edit']);
+Route::patch('/jobs/{job}', [JobController::class, 'update']);
+Route::delete('/jobs/{job}', [JobController::class, 'destroy']);
 
-Route::get('/jobs/create', function () {
-    return view('jobs.create');
-});
+//Route::get('/contact', function () {
+//    return view('contact');
+//});
 
-Route::get('/jobs/{id}', function ($id) {
-    $job = Job::find($id);
-    return view('jobs.show', [ 'job' => $job ]);
-});
+Route::view('/contact', 'contact');
 
-Route::post('/jobs', function () {
-    // Validation....
-
-    Job::create([
-        'title' => request('title') ,
-        'salary' => request('salary'),
-        'employer_id' => 1,
-    ]);
-
-    return redirect('/jobs');
-});
-
-Route::get('/contact', function () {
-    return view('contact');
-});
